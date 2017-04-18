@@ -5,4 +5,18 @@
 # pirates_say_arrrrrrrrr("Pirates say arrrrrrrrr")        # => "arrrrrrrr"
 
 def pirates_say_arrrrrrrrr(string)
+    check = false
+    to_return = ""
+    string.chars.each {|i|
+        if check == true
+            to_return << i
+            check = false unless i == "r" || i == "R"
+            next
+        else
+            check = true if i == "r" || i == "R"
+        end
+    }
+    return to_return
 end
+
+puts pirates_say_arrrrrrrrr("Pirates say arrrrrrrrr") 
