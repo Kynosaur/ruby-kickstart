@@ -25,4 +25,40 @@ class Fraction
     return a if b == 0
     gcd(b, a%b)
   end
+  
+  def numerator=(num)
+    @num = num
+  end
+  
+  def numerator
+    @num
+  end
+  
+  def denominator=(den)
+    @den = den
+  end
+  
+  def denominator
+    @den
+  end
+  
+  def initialize(num, den)
+    @num = num
+    @den = den
+  end
+  attr_accessor "num", "den"
+
+  def to_s
+    return "#{num}/#{den}"
+  end
+  
+  def to_f
+    return num/den.to_f
+  end
+  
+  def lowest
+    Fraction.new(num/gcd(num, den), den/gcd(num, den))
+  end
+  
+  
 end
