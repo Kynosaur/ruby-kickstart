@@ -26,39 +26,21 @@ class Fraction
     gcd(b, a%b)
   end
   
-  def numerator=(num)
-    @num = num
+  def initialize(numerator, denominator)
+    @numerator = numerator
+    @denominator = denominator
   end
-  
-  def numerator
-    @num
-  end
-  
-  def denominator=(den)
-    @den = den
-  end
-  
-  def denominator
-    @den
-  end
-  
-  def initialize(num, den)
-    @num = num
-    @den = den
-  end
-  attr_accessor "num", "den"
+  attr_accessor "numerator", "denominator"
 
   def to_s
-    return "#{num}/#{den}"
+    return "#{@numerator}/#{@denominator}"
   end
   
   def to_f
-    return num/den.to_f
+    return @numerator/@denominator.to_f
   end
   
   def lowest
-    Fraction.new(num/gcd(num, den), den/gcd(num, den))
+    Fraction.new(@numerator/gcd(@numerator, @denominator), @denominator/gcd(@numerator, @denominator))
   end
-  
-  
 end
