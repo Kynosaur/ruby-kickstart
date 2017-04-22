@@ -17,3 +17,28 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(indicator, *args)
+    evens = args.select.with_index{|i, idx| idx.even?}
+    odds = args.select.with_index{|i, idx| idx.odd?}
+    to_return = []
+    if indicator == true
+        for n in 0...evens.length
+            if (evens[n] && odds[n]) || (!evens[n] && !odds[n])
+                to_return << false
+            else
+                to_return << true
+            end
+        end
+    else
+        for n in 0...evens.length
+            if (evens[n] && odds[n]) || (!evens[n] && !odds[n])
+                to_return << true
+            else
+                to_return << false
+            end
+        end
+    end
+    p evens
+    p odds
+    p to_return
+end
