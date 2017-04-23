@@ -29,4 +29,10 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+    to_return = Hash.new{|k, v| k[v] = [nil, nil]}
+    lst = a+b
+    lst.each {|i| to_return[i] unless to_return.has_key?(i)}
+    a.each {|i| to_return[i][0] = true}
+    b.each {|i| to_return[i][1] = true}
+    [to_return, to_return.keys.select{|i| to_return[i] == [true, true]}]
 end
