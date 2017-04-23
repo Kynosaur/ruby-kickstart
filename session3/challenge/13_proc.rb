@@ -52,5 +52,16 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+# Initially wrote a bubble sort to deal with situations where no block was given,
+# but couldn't figure out how to get the block to apply to that so had a look
+# at the solution for this one.  This sort is much nicer!
+
+def your_sort(ary, &orderer)
+    orderer ||= Proc.new{|a, b| a <=> b}
+    ary.each_index do |idx1|
+        ary.each_index do |idx2|
+            order = orderer.call(ary[idx1], ary[idx2])
+            ary[idx1], ary[idx2] = ary[idx2], ary[idx1] if order < 0
+        end
+    end
 end
