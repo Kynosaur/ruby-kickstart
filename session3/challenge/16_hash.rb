@@ -15,3 +15,11 @@
 # head = {:data => 6, :next => head}
 # print_list head                    # >> "6\n5\n4\n3\n2\n1\n"
 
+def print_list(head)
+    if head[:next] == nil
+        puts head[:data]
+    else
+        puts head[:data]
+        print_list(head[:next])
+    end
+end
