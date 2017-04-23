@@ -30,5 +30,10 @@
 # end
 
 
-def array_init
+def array_init (indexes=5, &block)
+    if block_given?
+        Array.new(indexes, &block)
+    else
+        Array.new(indexes){|i| i = (i*100).to_s}
+    end
 end
