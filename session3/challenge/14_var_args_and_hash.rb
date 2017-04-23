@@ -21,11 +21,41 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*args)
+    if args.last.is_a?(Hash)
+        prob = args.pop
+        if prob[:problem] == :same_ends
+            same_ends(*args)
+        else
+            count_clumps(*args)
+        end
+    else
+        count_clumps(*args)
+    end
 end
 
-def same_ends
+def same_ends(n, *args)
+    ary = args.to_a
+    if n == 0
+        ary[0] == ary[-1] ? true : false
+    else
+        ary[0...n] == ary[-n..-1] ? true : false
+    end
 end
 
-def count_clumps
+def count_clumps(*args)
+    ary = args.to_a
+    last, in_clump, count = nil, false, 0
+    ary.each do |i|
+        if i == last
+            in_clump = true
+            last = i
+        else
+            count += 1 if in_clump == true
+            in_clump = false
+            last = i
+        end
+    end
+    count += 1 if in_clump == true
+    return count
 end
