@@ -29,5 +29,21 @@
 # create it from scratch :)
 
 
-def pathify
+
+# Couldn't figure this one out myself... multiple checks of solution then
+# coming back to try and write it were unhelpful which is why this is
+# basically the same as the solution but with different variable names :(
+
+def pathify(dir=Hash.new)
+    return dir.map{|i| "/#{i}"} if dir.is_a? Array
+    to_return = []
+    dir.each do |k, v|
+        working_directory = "/#{k}"
+        p working_directory
+        paths = pathify(v)
+        paths.each do |path|
+            to_return << (working_directory + path)
+        end
+    end
+    to_return
 end
